@@ -1,0 +1,9 @@
+ {
+      "id": 1,
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "john@example.com",
+      "height": 180,
+      "weight": 75,
+      "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget felis nec nulla consectetur viverra."
+    }

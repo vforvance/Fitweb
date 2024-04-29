@@ -1,29 +1,35 @@
 import React from 'react';
 
 const DashboardPage = () => {
+  // Hardcoded personal best data for Jon
+  const personalBests = {
+    deadlift: 250,
+    squat: 220,
+    shoulderPress: 120,
+    barbellRow: 180,
+    bicepCurl: 60,
+    pullUp: 20,
+  };
+
   return (
     <div className={'mainContainer'}>
-      <h2>Dashboard</h2>
+      <h2>Jon's Dashboard</h2>
       <div className="dashboard-content">
         <div className="stats">
-          <h3>Statistics</h3>
-          <p>Total workouts: 10</p>
-          <p>Completed workouts: 8</p>
-          <p>Remaining workouts: 2</p>
-        </div>
-        <div className={'inputContainer'}>
-          <h3>Recent Activity</h3>
+          <h3>Personal Bests</h3>
           <ul>
-            <li>Workout on 2024-04-20</li>
-            <li>Workout on 2024-04-18</li>
-            <li>Workout on 2024-04-16</li>
-            <li>...</li>
+            <li>Deadlift: {personalBests.deadlift} kg</li>
+            <li>Squat: {personalBests.squat} kg</li>
+            <li>Shoulder Press: {personalBests.shoulderPress} kg</li>
+            <li>Barbell Row: {personalBests.barbellRow} kg</li>
+            <li>Bicep Curl: {personalBests.bicepCurl} kg</li>
+            <li>Pull-Up: {personalBests.pullUp} reps</li>
           </ul>
         </div>
         <div className={'inputContainer'}>
           <h3>Quick Links</h3>
           <ul>
-            <li><a href="/workout">Start New Workout</a></li>
+            <li><a href="/workout">New Workout</a></li>
             <li><a href="/goals">Set Goals</a></li>
             <li><a href="/profile">View Profile</a></li>
           </ul>

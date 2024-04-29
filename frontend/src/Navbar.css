@@ -1,6 +1,6 @@
 /* Navbar.css */
 nav {
-    background-color: #333;
+    background-color: transparent;
     padding: 10px 20px;
   }
   
@@ -16,11 +16,12 @@ nav {
   }
   
   li a {
-    color: white;
+    color: rgb(9, 120, 115);
     text-decoration: none;
   }
   
   li a:hover {
-    color: yellow;
+    color: blue;
+  
   }
   
