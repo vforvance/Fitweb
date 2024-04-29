@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "lowdb": "^7.0.1",
+    "react-router-dom": "^6.23.0",
+    "styled-components": "^6.1.8"
+  }
+}
