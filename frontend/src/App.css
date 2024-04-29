@@ -40,13 +40,19 @@
   justify-content: center;
   height: 260px;
 }
+.inputButton :hover{
+  color: yellow;
+
+}
 
 .inputContainer {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
+  
 }
+
 
 .inputContainer > .errorLabel {
   color: red;
@@ -61,3 +67,4 @@
   border: 1px solid grey;
   padding-left: 8px;
 }
+

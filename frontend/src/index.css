@@ -51,3 +51,15 @@ input[type='button'] {
   border-radius: 8px;
   cursor: pointer;
 }
+
+button {
+  border: none;
+  background: #333;
+  color: white;
+  padding: 6px 12px;
+  margin: 8px;
+  font-size: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  
+}

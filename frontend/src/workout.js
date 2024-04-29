@@ -16,10 +16,10 @@ const WorkoutTrackingPage = () => {
   };
 
   return (
-    <div>
+    <div className={'mainContainer'}>
       <h2>Workout Tracking</h2>
       <form onSubmit={handleTrackingSubmit}>
-        <div>
+        <div className={'inputContainer'}>
           <label htmlFor="exercise">Exercise:</label>
           <input
             type="text"
@@ -29,7 +29,7 @@ const WorkoutTrackingPage = () => {
             placeholder="Enter exercise"
           />
         </div>
-        <div>
+        <div className={'inputContainer'}>
           <label htmlFor="duration">Duration (minutes):</label>
           <input
             type="number"
@@ -39,7 +39,7 @@ const WorkoutTrackingPage = () => {
             placeholder="Enter duration"
           />
         </div>
-        <div>
+        <div className={'inputContainer'}>
           <label htmlFor="calories-burned">Calories Burned:</label>
           <input
             type="number"
@@ -49,7 +49,7 @@ const WorkoutTrackingPage = () => {
             placeholder="Enter calories burned"
           />
         </div>
-        <button type="submit">Track Workout</button>
+        <button className={'inputButton'} type="submit">Track Workout</button>
       </form>
     </div>
   );

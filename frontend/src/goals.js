@@ -16,10 +16,10 @@ const GoalSettingPage = () => {
   };
 
   return (
-    <div>
+    <div className={'mainContainer'}>
       <h2>Goal Setting</h2>
       <form onSubmit={handleGoalSubmit}>
-        <div>
+        <div className={'inputContainer'}>
           <label htmlFor="daily-goal">Daily Goal:</label>
           <input
             type="text"
@@ -29,7 +29,7 @@ const GoalSettingPage = () => {
             placeholder="Enter daily goal"
           />
         </div>
-        <div>
+        <div className={'inputContainer'}>
           <label htmlFor="weekly-goal">Weekly Goal:</label>
           <input
             type="text"
@@ -39,7 +39,7 @@ const GoalSettingPage = () => {
             placeholder="Enter weekly goal"
           />
         </div>
-        <div>
+        <div className={'inputContainer'}>
           <label htmlFor="monthly-goal">Monthly Goal:</label>
           <input
             type="text"
@@ -49,7 +49,7 @@ const GoalSettingPage = () => {
             placeholder="Enter monthly goal"
           />
         </div>
-        <button type="submit">Set Goals</button>
+        <button className={'inputButton'} type="submit">Set Goals</button>
       </form>
     </div>
   );

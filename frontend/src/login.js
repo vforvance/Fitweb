@@ -20,14 +20,14 @@ const LoginPage = ({ setLoggedIn }) => {
   };
 
   return (
-    <div>
+    <div className={'mainContainer'}>
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         {/* Your login form inputs */}
-        <button type="submit">Login</button>
+        <button className={'inputButton'} type="submit" >Login</button>
       </form>
-      <div>
-        <p>Don't have an account? <button onClick={handleSignup}>Sign Up</button></p>
+      <div className={'inputContainer'}>
+        <p>Don't have an account? <button className={'inputButton'} type="submit" onClick={handleSignup}>Sign Up</button></p>
       </div>
     </div>
   );

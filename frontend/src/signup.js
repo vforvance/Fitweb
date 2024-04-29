@@ -19,28 +19,28 @@ const SignUpPage = ({ setLoggedIn }) => {
   };
 
   return (
-    <div>
+    <div className={'mainContainer'}>
       <h2>Sign Up</h2>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className={'inputContainer'}>
           <label>First Name:</label>
-          <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+          <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} className={'inputBox'} />
         </div>
-        <div>
+        <div className={'inputContainer'}>
           <label>Last Name:</label>
-          <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} />
+          <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} className={'inputBox'}/>
         </div>
-        <div>
+        <div className={'inputContainer'}>
           <label>Email:</label>
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className={'inputBox'}/>
         </div>
-        <div>
+        <div className={'inputContainer'}>
           <label>Password:</label>
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className={'inputBox'}/>
         </div>
-        <button type="submit">Sign Up</button>
+        <button className={'inputButton'} type="submit">Sign Up</button>
       </form>
-      <button onClick={() => navigate('/profile')}>Go to Profile</button>
+      <button className={'inputButton'} onClick={() => navigate('/profile')}>Go to Profile</button>
     </div>
   );
 };

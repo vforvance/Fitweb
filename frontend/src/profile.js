@@ -16,10 +16,10 @@ const UserProfilePage = () => {
   };
 
   return (
-    <div className="container">
+    <div className={'mainContainer'}>
       <h2>User Profile</h2>
       <form onSubmit={handleProfileUpdate}>
-        <div className="form-group">
+        <div className={'inputContainer'}>
           <label htmlFor="username">Username:</label>
           <input
             type="text"
@@ -29,7 +29,7 @@ const UserProfilePage = () => {
             placeholder="Enter username"
           />
         </div>
-        <div className="form-group">
+        <div className={'inputContainer'}>
           <label htmlFor="email">Email:</label>
           <input
             type="email"
@@ -39,7 +39,7 @@ const UserProfilePage = () => {
             placeholder="Enter email"
           />
         </div>
-        <div className="form-group">
+        <div className={'inputContainer'}>
           <label htmlFor="bio">Bio:</label>
           <textarea
             id="bio"
@@ -48,7 +48,7 @@ const UserProfilePage = () => {
             placeholder="Enter bio"
           ></textarea>
         </div>
-        <button type="submit">Update Profile</button>
+        <button className={'inputButton'} type="submit">Update Profile</button>
       </form>
     </div>
   );
