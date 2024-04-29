@@ -209,28 +209,59 @@ one_to_many = {
     'workout': [make_om('log', 'workoutid', 'logs')]
 }
 
-def handle_to_many(conn, base_id, rel):
-    result = conn.execute(db.select(getattr(metadata.tables[rel['table']].c, rel['table']+'id')).where(getattr(metadata.tables[rel['table']].c, rel['column']) == base_id)).all()
-    norm_result = [r[0] for r in result]
-    return norm_result
+def handle_to_many(base_id, rel):
+    return getattr(metadata.tables[rel['table']].c, rel['column']) == base_id
 
 def wrap_column(column):
     return db.func.concat('/api/', list(column.foreign_keys)[0].column.table.name, '/', column) if len(column.foreign_keys) > 0 else column
 
-def serialize_resource(conn, table, _id):
+def handle_record(conn, table, result):
+    if len(result) == 0: return result
+    _id = result.get(f'{table}id')
+    to_many = one_to_many.get(table, [])
+    to_many_results = {
+        to_many_field['name']: [serialize_resource(conn, to_many_field['table'], handle_to_many(_id, to_many_field))] for to_many_field in to_many
+    }
+    return {**result, **to_many_results}
+
+def serialize_resource(conn, table, _filter):
     sql_table = metadata.tables[table]
     columns = sql_table.c
-    index = getattr(sql_table.c, f'{table}id')
-    result  = conn.execute(db.select(*[wrap_column(c) for c in columns]).where(index==_id)).first()
-    results = {c.name: result[cid] for cid, c in enumerate(columns)} if result is not None else {}
-    to_many = one_to_many.get(table, [])
-    to_many_results = {to_many_field['name']: [serialize_resource(conn, to_many_field['table'], resource) for resource in handle_to_many(conn, _id, to_many_field)] for to_many_field in to_many}
-    return {**results, **to_many_results}
+    result = conn.execute(db.select(*[wrap_column(c) for c in columns]).where(_filter))
+    result = result.all()
+    results = [handle_record(conn, table, {
+        c.name: row[cid] for cid, c in enumerate(columns)
+        } if result is not None else {}) for row in result]
+    return results
+
+def get_user_max_by_weights():
+    query = """select
+                max(username),
+                max_weight,
+                exercisename from user join workout on user.userid = workout.userid join log on log.workoutid = workout.workoutid join (
+                    select
+                        exerciseid,
+                        exercise.name as exercisename,
+                        max(weight) as max_weight
+                    from exercise join log using (exerciseid) group by exerciseid
+            ) as temp on temp.max_weight = log.weight group by exercisename, max_weight;"""
+    stmt = db.text(query)
+    engine = clean_and_create_cache_schema("fitness")
+    with engine.connect() as conn:
+        rows = conn.execute(stmt)
+        rows = [[*row] for row in rows]
+        print(rows)
+        return {'items': list(rows)}
+    ...
+
 
 def wrap_serialize(table, _id):
     engine = clean_and_create_cache_schema("fitness")
     with engine.connect() as conn:
-        return serialize_resource(conn, table, _id)
+        sql_table = metadata.tables[table]
+        index = getattr(sql_table.c, f'{table}id')
+        return serialize_resource(conn, table, index==_id)[0]
+        
 if __name__ == '__main__':
     #print(metadata.tables)
     generate_schema()
