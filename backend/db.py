@@ -189,7 +189,16 @@ def insert_test_data(engine):
         )  for data in fake_data]
         conn.commit()
 
+def generate_schema():
+    schema = {
+        table_name: [{'name': c.name, 'type': str(c.type.python_type.__name__), 'isrelationship': len(c.foreign_keys) > 0} for c in table.c]
+        for table_name, table in metadata.tables.items()
+    }
+    return schema
+
 if __name__ == '__main__':
-    engine = clean_and_create_cache_schema("fitness", True)
-    metadata.create_all(engine)
-    insert_test_data(engine)
+    print(metadata.tables)
+    generate_schema()
+    #engine = clean_and_create_cache_schema("fitness", True)
+    #metadata.create_all(engine)
+    #insert_test_data(engine)

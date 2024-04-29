@@ -1,0 +1,18 @@
+version: "3.7"
+
+services:
+  mariadb:
+    image: mariadb:10.11
+    volumes:
+      - "fit-database:/var/lib/mysql" # the data directory for mariadb
+    ports:
+      - "127.0.0.1:3306:3306" # map host port 3306 to container port 3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=ROOT
+      - MYSQL_DATABASE=fitness
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+
+
+volumes:
+  fit-database:
