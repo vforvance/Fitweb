@@ -19,11 +19,11 @@ const Home = () => {
   };
 
   return (
-    <div>
+    <div className={'mainContainer'}>
       {loggedIn ? (
-        <div>
+        <div className={'titleContainer'}>
           <p>Welcome, User!</p>
-          <button onClick={handleLogout}>Logout</button>
+          <button className={'inputButton'} onClick={handleLogout}>Logout</button>
         </div>
       ) : (
         <div>
