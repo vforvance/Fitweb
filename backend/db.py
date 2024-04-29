@@ -1,5 +1,6 @@
 import sqlalchemy as db
 from db_utils import create_all, metadata, _engine, clean_and_create_cache_schema
+import json
 
 user = db.Table(
     "user",
@@ -196,9 +197,48 @@ def generate_schema():
     }
     return schema
 
+def make_om(table, column, name):
+    return {
+        'table': table,
+        'column': column,
+        'name': name
+    }
+
+one_to_many = {
+    'user': [make_om('workout', 'userid', 'workouts')],
+    'workout': [make_om('log', 'workoutid', 'logs')]
+}
+
+def handle_to_many(conn, base_id, rel):
+    result = conn.execute(db.select(getattr(metadata.tables[rel['table']].c, rel['table']+'id')).where(getattr(metadata.tables[rel['table']].c, rel['column']) == base_id)).all()
+    norm_result = [r[0] for r in result]
+    return norm_result
+
+def wrap_column(column):
+    return db.func.concat('/api/', list(column.foreign_keys)[0].column.table.name, '/', column) if len(column.foreign_keys) > 0 else column
+
+def serialize_resource(conn, table, _id):
+    sql_table = metadata.tables[table]
+    columns = sql_table.c
+    index = getattr(sql_table.c, f'{table}id')
+    result  = conn.execute(db.select(*[wrap_column(c) for c in columns]).where(index==_id)).first()
+    results = {c.name: result[cid] for cid, c in enumerate(columns)} if result is not None else {}
+    to_many = one_to_many.get(table, [])
+    to_many_results = {to_many_field['name']: [serialize_resource(conn, to_many_field['table'], resource) for resource in handle_to_many(conn, _id, to_many_field)] for to_many_field in to_many}
+    return {**results, **to_many_results}
+
+def wrap_serialize(table, _id):
+    engine = clean_and_create_cache_schema("fitness")
+    with engine.connect() as conn:
+        return serialize_resource(conn, table, _id)
 if __name__ == '__main__':
-    print(metadata.tables)
+    #print(metadata.tables)
     generate_schema()
-    #engine = clean_and_create_cache_schema("fitness", True)
-    #metadata.create_all(engine)
-    #insert_test_data(engine)
+    engine = clean_and_create_cache_schema("fitness", True)
+    metadata.create_all(engine)
+    insert_test_data(engine)
+    with engine.connect() as conn:
+        result = serialize_resource(conn, 'user', 1)
+    with open('test.json', 'w') as f:
+        f.write(json.dumps(result))
+    print(result)
