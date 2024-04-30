@@ -220,7 +220,7 @@ def handle_record(conn, table, result):
     _id = result.get(f'{table}id')
     to_many = one_to_many.get(table, [])
     to_many_results = {
-        to_many_field['name']: [serialize_resource(conn, to_many_field['table'], handle_to_many(_id, to_many_field))] for to_many_field in to_many
+        to_many_field['name']: serialize_resource(conn, to_many_field['table'], handle_to_many(_id, to_many_field)) for to_many_field in to_many
     }
     return {**result, **to_many_results}
 
@@ -236,9 +236,9 @@ def serialize_resource(conn, table, _filter):
 
 def get_user_max_by_weights():
     query = """select
+                exercisename,
                 max(username),
-                max_weight,
-                exercisename from user join workout on user.userid = workout.userid join log on log.workoutid = workout.workoutid join (
+                max_weight from user join workout on user.userid = workout.userid join log on log.workoutid = workout.workoutid join (
                     select
                         exerciseid,
                         exercise.name as exercisename,
@@ -261,7 +261,18 @@ def wrap_serialize(table, _id):
         sql_table = metadata.tables[table]
         index = getattr(sql_table.c, f'{table}id')
         return serialize_resource(conn, table, index==_id)[0]
-        
+    
+def get_personal_bests(user_id):
+    engine = clean_and_create_cache_schema("fitness")
+    with engine.connect() as conn:
+        query = db.text(f"""
+                select exercise.name, max(log.weight) from user join workout on user.userid = workout.userid join log on log.workoutid = workout.workoutid
+                join exercise on exercise.exerciseid = log.exerciseid where user.userid = :userid group by exercise.name
+                """)
+        row = conn.execute(query, {'userid': user_id}).all()
+        row = [[*row] for row in row]
+        return {_row[0]: _row[1] for _row in row}
+
 if __name__ == '__main__':
     #print(metadata.tables)
     generate_schema()

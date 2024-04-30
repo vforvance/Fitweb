@@ -1,36 +1,31 @@
 import React from 'react';
+import { UserContext } from './App';
 
 const UserProfilePage = () => {
-  // Hardcoded fake user data
-  const userProfile = {
-    firstName: 'John',
-    lastName: 'Doe',
-    email: 'john.doe@example.com',
-    height: 180,
-    weight: 75,
-    bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-  };
+  
+  const [user, setUser] = React.useContext(UserContext);
+ 
 
-  const { firstName, lastName, email, height, weight, bio } = userProfile;
+  //const { firstName, lastName, email, height, weight, bio } = userProfile;
 
-  return (
+  return user !== undefined && (
     <div className="mainContainer">
       <h2>User Profile</h2>
       <div className="userInfo">
         <div>
-          <strong>Name:</strong> {firstName} {lastName}
+          <strong>Name:</strong> {user.firstname} {user.lastname}
         </div>
         <div>
-          <strong>Email:</strong> {email}
+          <strong>Email:</strong> {user.email}
         </div>
         <div>
-          <strong>Height:</strong> {height} cm
+          <strong>Height:</strong> {user.height} cm
         </div>
         <div>
-          <strong>Weight:</strong> {weight} kg
+          <strong>Weight:</strong> {user.weight} kg
         </div>
         <div>
-          <strong>Bio:</strong> {bio}
+          <strong>Bio:</strong> {user.fitnessgoal}
         </div>
       </div>
     </div>

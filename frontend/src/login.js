@@ -1,17 +1,22 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
+import { useNavigate, Outlet } from 'react-router-dom';
+import {UserContext} from "./App.js"
+
+export const baseUrl = (extension)=>`http://127.0.0.1:5000${extension}`
+export const niceFetch = (extension)=>fetch(baseUrl(extension)).then((response)=>response.json())
 
 const LoginPage = ({ setLoggedIn }) => {
   const navigate = useNavigate();
-  const [username, setUsername] = useState('');
-
+  const [user, setUser] = React.useContext(UserContext);
+  const [userName, setUsername] = React.useState(""); 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Implement login logic here
     // For simplicity, let's just set loggedIn state to true
-    setLoggedIn(true);
+    //setLoggedIn(true);
     // Navigate to the dashboard of the specified user
-    navigate(`/dashboard/${username}`);
+    fetch(baseUrl('/api/user/1')).then((response)=>response.json()).then(setUser);
+    navigate(`/dashboard/`);
   };
 
   return (
@@ -23,7 +28,7 @@ const LoginPage = ({ setLoggedIn }) => {
           <input
             type="text"
             id="username"
-            value={username}
+            value={userName}
             onChange={(e) => setUsername(e.target.value)}
             placeholder="Enter username"
           />

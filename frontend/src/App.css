@@ -68,3 +68,53 @@
   padding-left: 8px;
 }
 
+.split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  top: 0;
+  overflow-x: hidden;
+  margin-top: 40px
+}
+
+/* Control the left side */
+.left {
+  left: 0;
+  /*background-color: green;*/
+}
+
+/* Control the right side */
+.right {
+  right: 0;
+  /*background-color: red;*/
+}
+
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.listcontainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3em;
+}
+
+.listcontainerwork{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 7em;
+  background-color: aliceblue;
+  margin: 0.5rem;
+}
+
+.listcontainer:hover{
+  background-color: rgb(159, 159, 196);
+}
+
+.highlight{
+  background-color: rgb(159, 159, 196);
+}

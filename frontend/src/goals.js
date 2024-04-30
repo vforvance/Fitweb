@@ -1,31 +1,9 @@
 import React, { useState } from 'react';
+import { useNiceFetch } from './dashboard';
 
 const GoalSettingPage = () => {
-  const [dailyGoal, setDailyGoal] = useState('');
-  const [weeklyGoal, setWeeklyGoal] = useState('');
-  const [monthlyGoal, setMonthlyGoal] = useState('');
-
-  // Hardcoded fake user information for leaderboard
-  const leaderboardData = [
-    { username: 'John', deadlift: 200, squat: 180, shoulderPress: 100, pullUp: 15, barbellRow: 150, bicepCurl: 50 },
-    { username: 'Alice', deadlift: 220, squat: 170, shoulderPress: 110, pullUp: 8, barbellRow: 120, bicepCurl: 45 },
-    { username: 'Bob', deadlift: 210, squat: 185, shoulderPress: 105, pullUp: 16, barbellRow: 145, bicepCurl: 52 },
-    // Add more fake user information as needed
-  ];
-
-  // Function to find the user with the highest lifted weight for each exercise
-  const findLeader = (exercise) => {
-    let maxWeight = -1;
-    let leader = null;
-    leaderboardData.forEach((user) => {
-      if (user[exercise] > maxWeight) {
-        maxWeight = user[exercise];
-        leader = user;
-      }
-    });
-    return leader;
-  };
-
+  const [response, setResponse] = React.useState(undefined);
+  useNiceFetch('/api/max_weights/', setResponse);
   return (
     <div className={'mainContainer'}>
       <h2>Goal Setting</h2>
@@ -36,22 +14,20 @@ const GoalSettingPage = () => {
       {/* Leaderboard section */}
       <div className="leaderboard">
         <h3>Leaderboard</h3>
-        <table>
+        <table border={"black"}>
           <thead>
             <tr>
-              <th>Exercise</th>
-              <th>Username</th>
-              <th>Highest Lifted Weight (kg)</th>
+              <th style={{padding: "0.25rem"}}>Exercise</th>
+              <th style={{padding: "0.25rem"}}>Username</th>
+              <th style={{padding: "0.25rem"}}>Highest Lifted Weight (kg)</th>
             </tr>
           </thead>
           <tbody>
-            {Object.keys(leaderboardData[0]).slice(1).map((exercise, index) => (
-              <tr key={index}>
-                <td>{exercise}</td>
-                <td>{findLeader(exercise).username}</td>
-                <td>{findLeader(exercise)[exercise]}</td>
-              </tr>
-            ))}
+            {response === undefined ? undefined : response.items.map(([excericse, name, weight ], index)=>(<tr key={index}>
+               <td style={{padding: "0.25rem"}}>{excericse}</td> 
+               <td style={{padding: "0.25rem"}}>{name}</td>
+               <td style={{padding: "0.25rem"}}>{weight}</td>
+            </tr>))}
           </tbody>
         </table>
       </div>
