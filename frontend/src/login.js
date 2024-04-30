@@ -11,11 +11,11 @@ const LoginPage = ({ setLoggedIn }) => {
   const [userName, setUsername] = React.useState(""); 
   const handleSubmit = (e) => {
     e.preventDefault();
+    niceFetch(`/api/user_id?name=${userName}`).then(({id})=>niceFetch(`/api/user/${id}`)).then(setUser)
     // Implement login logic here
     // For simplicity, let's just set loggedIn state to true
     //setLoggedIn(true);
     // Navigate to the dashboard of the specified user
-    fetch(baseUrl('/api/user/1')).then((response)=>response.json()).then(setUser);
     navigate(`/dashboard/`);
   };
 

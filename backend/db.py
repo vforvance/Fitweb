@@ -234,6 +234,16 @@ def serialize_resource(conn, table, _filter):
         } if result is not None else {}) for row in result]
     return results
 
+def get_id_given_name(username):
+    engine = clean_and_create_cache_schema("fitness")
+    query = "SELECT userid FROM user WHERE username = :username"
+    stmt = db.text(query)
+    with engine.connect() as conn:
+        print(stmt)
+        result = conn.execute(stmt, {'username':username}).first()
+        user_id = result[0]
+        return {'id': user_id}
+
 def get_user_max_by_weights():
     query = """select
                 exercisename,
