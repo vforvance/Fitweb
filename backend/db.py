@@ -85,6 +85,384 @@ fake_data = [
                 "height": 170,
                 "weight": 180,
                 "fitnessgoal": "Be like Jim"
+            },
+            {
+                "userid": 3,
+                "username": 'jane',
+                "email": "jane@ku.edu",
+                "firstname": "Jane",
+                "lastname": "Doe",
+                "height": 165,
+                "weight": 60,
+                "fitnessgoal": "Get fit"
+            },
+            {
+                "userid": 4,
+                "username": 'alex',
+                "email": "alex@ku.edu",
+                "firstname": "Alex",
+                "lastname": "Smith",
+                "height": 180,
+                "weight": 85,
+                "fitnessgoal": "Gain muscle"
+            },
+            {
+                "userid": 5,
+                "username": 'emma',
+                "email": "emma@ku.edu",
+                "firstname": "Emma",
+                "lastname": "Johnson",
+                "height": 165,
+                "weight": 55,
+                "fitnessgoal": "Stay healthy"
+            },
+            {
+                "userid": 6,
+                "username": 'mike',
+                "email": "mike@ku.edu",
+                "firstname": "Mike",
+                "lastname": "Brown",
+                "height": 175,
+                "weight": 70,
+                "fitnessgoal": "Improve endurance"
+            },
+            {
+                "userid": 7,
+                "username": 'sarah',
+                "email": "sarah@ku.edu",
+                "firstname": "Sarah",
+                "lastname": "Wilson",
+                "height": 160,
+                "weight": 65,
+                "fitnessgoal": "Increase flexibility"
+            },
+            {
+                "userid": 8,
+                "username": 'chris',
+                "email": "chris@ku.edu",
+                "firstname": "Chris",
+                "lastname": "Anderson",
+                "height": 185,
+                "weight": 90,
+                "fitnessgoal": "Build strength"
+            },
+            {
+                "userid": 9,
+                "username": 'laura',
+                "email": "laura@ku.edu",
+                "firstname": "Laura",
+                "lastname": "Taylor",
+                "height": 162,
+                "weight": 63,
+                "fitnessgoal": "Tone muscles"
+            },
+            {
+                "userid": 10,
+                "username": 'steve',
+                "email": "steve@ku.edu",
+                "firstname": "Steve",
+                "lastname": "Wilson",
+                "height": 178,
+                "weight": 80,
+                "fitnessgoal": "Reduce body fat"
+            }
+            # Add more user objects as needed
+        ]
+    },
+    {
+        'table': exercise,
+        "data": [
+            {
+                "exerciseid": 1,
+                "name": "Bench Press",
+                "musclegroup": "Chest",
+                "difficultylevel": 2,
+                "equipment": "Bench, Barbell",
+                "description": None
+            },
+            {
+                "exerciseid": 2,
+                "name": "Squat",
+                "musclegroup": "Legs",
+                "difficultylevel": 3,
+                "equipment": "Squat rack, Barbell",
+                "description": None
+            },
+            {
+                "exerciseid": 3,
+                "name": "Deadlift",
+                "musclegroup": "Back",
+                "difficultylevel": 4,
+                "equipment": "Barbell",
+                "description": "Lift the barbell from the ground to hip level while keeping your back straight."
+            },
+            {
+                "exerciseid": 4,
+                "name": "Pull-up",
+                "musclegroup": "Back",
+                "difficultylevel": 3,
+                "equipment": "Pull-up bar",
+                "description": "Pull your body up until your chin clears the bar, then lower yourself back down."
+            },
+            {
+                "exerciseid": 5,
+                "name": "Shoulder Press",
+                "musclegroup": "Shoulders",
+                "difficultylevel": 2,
+                "equipment": "Dumbbells, Barbell",
+                "description": "Push weights directly overhead until arms are fully extended."
+            },
+            {
+                "exerciseid": 6,
+                "name": "Barbell Row",
+                "musclegroup": "Back",
+                "difficultylevel": 3,
+                "equipment": "Barbell",
+                "description": "Pull the barbell towards your lower chest while keeping your back straight."
+            },
+            {
+                "exerciseid": 7,
+                "name": "Bicep Curl",
+                "musclegroup": "Arms",
+                "difficultylevel": 2,
+                "equipment": "Dumbbells, Barbell, EZ bar",
+                "description": "Curl the weight upwards by bending your elbow while keeping your upper arm stationary."
+            },
+            {
+                "exerciseid": 8,
+                "name": "Barbell Roll",
+                "musclegroup": "Back",
+                "difficultylevel": 3,
+                "equipment": "Barbell",
+                "description": "Roll the barbell with your arms to work your back muscles."
+            },
+            {
+                "exerciseid": 9,
+                "name": "Lunges",
+                "musclegroup": "Legs",
+                "difficultylevel": 2,
+                "equipment": "None",
+                "description": "Step forward with one leg, lowering your hips until both knees are bent at about a 90-degree angle."
+            },
+            {
+                "exerciseid": 10,
+                "name": "Tricep Dip",
+                "musclegroup": "Arms",
+                "difficultylevel": 2,
+                "equipment": "Parallel bars",
+                "description": "Lower your body by bending your elbows until your upper arms are parallel to the ground, then push yourself back up."
+            }
+            # Add more exercise objects as needed
+        ]
+    },
+    {
+        'table': workout,
+        "data": [
+            {
+                "workoutid": 1,
+                "userid": 1,
+                "name": "Monday morning workout",
+                "starttime": None,
+                "endtime": None,
+                "notes": "Nice workout"
+            },
+            {
+                "workoutid": 2,
+                "userid": 1,
+                "name": "Monday evening workout",
+                "starttime": None,
+                "endtime": None,
+                "notes": "Nice workout, the second one"
+            },
+            {
+                "workoutid": 3,
+                "userid": 2,
+                "name": "Workout with John",
+                "starttime": None,
+                "endtime": None,
+                "notes": "Nice workout"
+            },
+            {
+                "workoutid": 4,
+                "userid": 2,
+                "name": "Workout without Jim",
+                "starttime": None,
+                "endtime": None,
+                "notes": "Nice workout, the second one"
+            },
+            {
+                "workoutid": 5,
+                "userid": 3,
+                "name": "Wednesday morning workout",
+                "starttime": None,
+                "endtime": None,
+                "notes": "Great session"
+            },
+            {
+                "workoutid": 6,
+                "userid": 3,
+                "name": "Wednesday evening workout",
+                "starttime": None,
+                "endtime": None,
+                "notes": "Feeling strong"
+            },
+            {
+                "workoutid": 7,
+                "userid": 4,
+                "name": "Alex's Friday Workout",
+                "starttime": None,
+                "endtime": None,
+                "notes": "Heavy lifting day"
+            },
+            {
+                "workoutid": 8,
+                "userid": 5,
+                "name": "Emma's Yoga Session",
+                "starttime": None,
+                "endtime": None,
+                "notes": "Relaxing and rejuvenating"
+            },
+            {
+                "workoutid": 9,
+                "userid": 6,
+                "name": "Mike's Run",
+                "starttime": None,
+                "endtime": None,
+                "notes": "5-mile run in the park"
+            },
+            {
+                "workoutid": 10,
+                "userid": 7,
+                "name": "Sarah's Pilates Class",
+                "starttime": None,
+                "endtime": None,
+                "notes": "Core strengthening and flexibility"
+            }
+            # Add more workout objects as needed
+        ]
+    },
+    {
+        'table': log,
+        "data": [
+            {
+                "logid": 1,
+                "exerciseid": 1,
+                "workoutid": 1,
+                "set": 5,
+                "rep": 5,
+                "weight": 180,
+                "duration": 20
+            },
+            {
+                "logid": 2,
+                "exerciseid": 2,
+                "workoutid": 1,
+                "set": 4,
+                "rep": 1,
+                "weight": 350,
+                "duration": 40 
+            },
+            {
+                "logid": 3,
+                "exerciseid": 2,
+                "workoutid": 3,
+                "set": 4,
+                "rep": 9,
+                "weight": 350,
+                "duration": 190
+            },
+            {
+                "logid": 4,
+                "exerciseid": 3,
+                "workoutid": 4,
+                "set": 5,
+                "rep": 5,
+                "weight": 220,
+                "duration": 30
+            },
+            {
+                "logid": 5,
+                "exerciseid": 4,
+                "workoutid": 5,
+                "set": 4,
+                "rep": 10,
+                "weight": 0,
+                "duration": 120
+            },
+            {
+                "logid": 6,
+                "exerciseid": 5,
+                "workoutid": 6,
+                "set": 5,
+                "rep": 8,
+                "weight": 40,
+                "duration": 15
+            },
+            {
+                "logid": 7,
+                "exerciseid": 6,
+                "workoutid": 7,
+                "set": 4,
+                "rep": 12,
+                "weight": 120,
+                "duration": 25
+            },
+            {
+                "logid": 8,
+                "exerciseid": 7,
+                "workoutid": 8,
+                "set": 5,
+                "rep": 10,
+                "weight": 20,
+                "duration": 18
+            },
+            {
+                "logid": 9,
+                "exerciseid": 8,
+                "workoutid": 9,
+                "set": 4,
+                "rep": 15,
+                "weight": 60,
+                "duration": 35
+            },
+            {
+                "logid": 10,
+                "exerciseid": 9,
+                "workoutid": 10,
+                "set": 3,
+                "rep": 20,
+                "weight": 0,
+                "duration": 30
+            }
+            # Add more log objects as needed
+        ]
+    }
+]
+
+
+fake_data2 = [
+    {
+        'table': user,
+        'data': [
+            {
+                "userid": 1,
+                "username": 'john',
+                "email": "john@ku.edu",
+                "firstname": "John",
+                "lastname": "Doe",
+                "height": 170,
+                "weight": 78,
+                "fitnessgoal": "Be like Arnold"
+            },
+            {
+                "userid": 2,
+                "username": 'kevin',
+                "email": "kevin@ku.edu",
+                "firstname": "Kevin",
+                "lastname": "Malone",
+                "height": 170,
+                "weight": 180,
+                "fitnessgoal": "Be like Jim"
             }
         ]
     }, 
@@ -289,8 +667,3 @@ if __name__ == '__main__':
     engine = clean_and_create_cache_schema("fitness", True)
     metadata.create_all(engine)
     insert_test_data(engine)
-    with engine.connect() as conn:
-        result = serialize_resource(conn, 'user', 1)
-    with open('test.json', 'w') as f:
-        f.write(json.dumps(result))
-    print(result)
