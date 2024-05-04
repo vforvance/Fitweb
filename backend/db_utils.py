@@ -1,12 +1,5 @@
 import sqlalchemy as db
 
-
-get_db_url = lambda schema: f'mysql://%s:%s@%s:%s{f"/{schema}" if schema is not None else ""}?charset=utf8' % (
-        'root',
-        'ROOT',
-        '127.0.0.1',
-        3306)
-
 get_db_url = lambda schema: f'sqlite:///mem.db'
 
 _engine = db.create_engine(get_db_url("fitness"))
