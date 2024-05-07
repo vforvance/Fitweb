@@ -1,13 +1,11 @@
 import React, { useState, createContext } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Home from './home';
 import LoginPage from './login';
 import DashboardPage from './dashboard'; 
 import UserProfilePage from './profile';
 import GoalSettingPage from './goals';
 import WorkoutTrackingPage from './workout';
 import Navbar from './Navbar';
-import SignUpPage from './signup';
 import './App.css';
 
 export const UserContext = createContext();
@@ -20,6 +18,7 @@ function App() {
       <BrowserRouter>
         <Navbar loggedIn={false}/>
         <Routes>
+          <Route path="/" element={<LoginPage setLoggedIn={false} />} />
           <Route path="/login" element={<LoginPage setLoggedIn={false} />} />
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/profile" element={<UserProfilePage />} />

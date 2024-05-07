@@ -4,8 +4,6 @@ get_db_url = lambda schema: f'sqlite:///mem.db'
 
 _engine = db.create_engine(get_db_url("fitness"))
 
-metadata = db.MetaData()
-
 def clean_and_create_cache_schema(cache_schema, drop=False):
         if drop:
                 with _engine.connect() as connection:
@@ -14,10 +12,6 @@ def clean_and_create_cache_schema(cache_schema, drop=False):
                         #connection.commit()
                         ...
         return db.create_engine(get_db_url(cache_schema))
-
-        
-def create_all():
-    metadata.create_all(_engine)
 
 if __name__ == '__main__':
     get_db_url(None)

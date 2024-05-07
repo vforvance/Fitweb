@@ -1,6 +1,9 @@
 from flask import Flask, request
 from flask_cors import CORS, cross_origin
-from db import generate_schema, wrap_serialize, get_user_max_by_weights, get_personal_bests, get_id_given_name
+from db import 
+    generate_schema, wrap_serialize,
+    get_user_max_by_weights,
+    get_personal_bests, get_id_given_name, get_workout_by_name, get_workout_by_user
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -31,6 +34,18 @@ def get_personal_best(_id):
 def get_given_name():
     if request.method == 'GET':
         return get_id_given_name(request.args['name'])
+
+@cross_origin()
+@app.route("/api/get_workout_name")
+def get_workout_name():
+    if request.method == 'GET':
+        return get_workout_by_name(request.args['user'], request.args['name'])
+
+@cross_origin()
+@app.route("/api/get_workout_user")
+def get_workout_user():
+    if request.method == 'GET':
+        return get_workout_by_user(request.args['user'])
 
 @cross_origin()
 @app.route("/")

@@ -2,7 +2,7 @@ import React from 'react';
 import { useOutletContext } from "react-router-dom";
 import { UserContext } from './App';
 import { niceFetch } from './login';
-
+import { Link } from 'react-router-dom';
 
 export const useNiceFetch = (extension, setter)=>{
   React.useEffect(()=>{
@@ -38,9 +38,9 @@ const DashboardPage = () => {
         <div className={'inputContainer'}>
           <h3>Quick Links</h3>
           <ul>
-            <li><a href="/workout">Workout</a></li>
-            <li><a href="/goals">Set Goals</a></li>
-            <li><a href="/profile">View Profile</a></li>
+            <li><Link to="/workout">Workout</Link></li>
+            <li><Link to="/goals">Goals</Link></li>
+            <li><Link to="/profile">Profile</Link></li>
           </ul>
         </div>
       </div>
