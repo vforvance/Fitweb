@@ -1,7 +1,7 @@
 import React from 'react';
 import { useOutletContext } from "react-router-dom";
 import { UserContext } from './App';
-import { niceFetch } from './login';
+import { niceFetch, useLoggedIn } from './login';
 import { Link } from 'react-router-dom';
 
 export const useNiceFetch = (extension, setter)=>{
@@ -20,7 +20,7 @@ export const useNiceFetch = (extension, setter)=>{
 
 const DashboardPage = () => {
 
-  const [user, setUser] = React.useContext(UserContext);
+  const [user, setUser] = useLoggedIn();
   const [personalBest, setPersonalBest] = React.useState(undefined);
   useNiceFetch(user === undefined ? undefined : `/api/personal_best/${user.userid}`, setPersonalBest);
   console.log(user);

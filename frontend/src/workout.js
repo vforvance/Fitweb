@@ -1,27 +1,27 @@
 import React, { useState } from 'react';
 import { UserContext } from './App';
 import { useNiceFetch } from './dashboard';
-import { niceFetch } from './login';
+import { niceFetch, useLoggedIn } from './login';
 
 const WorkoutTrackingPage = () => {
 
-  const [user, setUser] = React.useContext(UserContext);
+  const [user, setUser] = useLoggedIn() ;
   const [activeWorkout, setActiveWorkout] = React.useState(undefined);
   const handleTrackingSubmit = (e) => {
     e.preventDefault();
   };
   //console.log(user.workouts, 'ww')
-  const [workouts, setWorkouts] = React.useState(user.workouts);
-  React.useEffect(()=>setWorkouts(user.workouts), [user.workouts]);
+  const [workouts, setWorkouts] = React.useState(user?.workouts);
+  React.useEffect(()=>setWorkouts(user?.workouts), [user?.workouts]);
 
-  return (
+  return user !== undefined && (  
     <div style={{width: "100%"}}>
       <div className="split left">
       <ExerciseByName userid={user.userid} setWorkout={
         (newWorkouts)=>{
           setWorkouts(newWorkouts); 
           setActiveWorkout(undefined);
-        }} defaultWorkouts={user.workouts}/>  
+        }} defaultWorkouts={user?.workouts}/>  
       <h2 className='container'>Workouts</h2>
       {user !== undefined && (
       <ul className='color:black'>{(workouts).map((data, index)=>{
@@ -39,7 +39,7 @@ const WorkoutTrackingPage = () => {
 
 const RenderExercise = ({log})=>{
   const [exercise, setExercise] = React.useState(undefined);
-  useNiceFetch(log.exerciseid, setExercise);
+  useNiceFetch(`/api/exercise/${log.exerciseid}`, setExercise);
   return (exercise === undefined ? undefined : (<li className='listcontainerwork'>{exercise.name}<br/>Reps: {log.rep}<br/>Sets: {log.set}<br/>Weight: {log.weight}</li>))
 }
 

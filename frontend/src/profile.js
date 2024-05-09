@@ -1,9 +1,10 @@
 import React from 'react';
 import { UserContext } from './App';
+import { useLoggedIn } from './login';
 
 const UserProfilePage = () => {
   
-  const [user, setUser] = React.useContext(UserContext);
+  const [user, setUser] = useLoggedIn();
  
 
   //const { firstName, lastName, email, height, weight, bio } = userProfile;

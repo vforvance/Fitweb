@@ -1,8 +1,7 @@
 from flask import Flask, request
 from flask_cors import CORS, cross_origin
-from db import 
-    generate_schema, wrap_serialize,
-    get_user_max_by_weights,
+from db import wrap_serialize, \
+    get_user_max_by_weights, \
     get_personal_bests, get_id_given_name, get_workout_by_name, get_workout_by_user
 
 app = Flask(__name__)
